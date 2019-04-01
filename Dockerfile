@@ -20,8 +20,8 @@ RUN DEBIAN_FRONTEND="noninteractive" add-apt-repository ppa:ondrej/php
 RUN DEBIAN_FRONTEND="noninteractive" apt-get update
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -y upgrade
 RUN DEBIAN_FRONTEND="noninteractive" apt-get update --fix-missing
-RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install php7.2
-RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install php7.2-fpm php7.2-common php7.2-cli php7.2-mysqlnd php7.2-curl php7.2-bcmath php7.2-mbstring php7.2-soap php7.2-xml php7.2-zip php7.2-json php7.2-imap php-xdebug php-pgsql
+RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install php7.3
+RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install php7.3-fpm php7.3-common php7.3-cli php7.3-mysqlnd php7.3-curl php7.3-bcmath php7.3-mbstring php7.3-soap php7.3-xml php7.3-zip php7.3-json php7.3-imap php-xdebug php-pgsql php7.3-calendar php7.3-ctype php7.3-curl php7.3-dom php7.3-exif php7.3-fileinfo php7.3-ftp php7.3-gd php7.3-gettext php7.3-iconv php7.3-imagick php7.3-imap php7.3-intl php7.3-json php7.3-mbstring php7.3-mysqli php7.3-mysqlnd php7.3-OAuth php7.3-PDO php7.3-pgsql php7.3-Phar php7.3-posix php7.3-readline php7.3-shmop php7.3-SimpleXML php7.3-sockets php7.3-sysvmsg php7.3-sysvsem php7.3-sysvshm php7.3-tokenizer php7.3-wddx php7.3-xml php7.3-xmlreader php7.3-xmlwriter php7.3-xsl php7.3-zip
 
 # install nginx (full)
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y nginx-full
@@ -46,13 +46,13 @@ ADD build/.bashrc /root/.bashrc
 # disable services start
 RUN update-rc.d -f apache2 remove
 RUN update-rc.d -f nginx remove
-RUN update-rc.d -f php7.2-fpm remove
+RUN update-rc.d -f php7.3-fpm remove
 
 # add startup scripts for nginx
 ADD build/nginx.sh /etc/service/nginx/run
 RUN chmod +x /etc/service/nginx/run
 
-# add startup scripts for php7.2-fpm
+# add startup scripts for php7.3-fpm
 ADD build/phpfpm.sh /etc/service/phpfpm/run
 RUN chmod +x /etc/service/phpfpm/run
 
