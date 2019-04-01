@@ -16,11 +16,12 @@ RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
 CMD ["/sbin/my_init"]
 
 # nginx-php installation
+RUN DEBIAN_FRONTEND="noninteractive" add-apt-repository ppa:ondrej/php
 RUN DEBIAN_FRONTEND="noninteractive" apt-get update
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -y upgrade
 RUN DEBIAN_FRONTEND="noninteractive" apt-get update --fix-missing
-RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install php7.0
-RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install php7.0-fpm php7.0-common php7.0-cli php7.0-mysqlnd php7.0-mcrypt php7.0-curl php7.0-bcmath php7.0-mbstring php7.0-soap php7.0-xml php7.0-zip php7.0-json php7.0-imap php-xdebug php-pgsql
+RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install php7.2
+RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install php7.2-fpm php7.2-common php7.2-cli php7.2-mysqlnd php7.2-curl php7.2-bcmath php7.2-mbstring php7.2-soap php7.2-xml php7.2-zip php7.2-json php7.2-imap php-xdebug php-pgsql
 
 # install nginx (full)
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y nginx-full
@@ -45,13 +46,13 @@ ADD build/.bashrc /root/.bashrc
 # disable services start
 RUN update-rc.d -f apache2 remove
 RUN update-rc.d -f nginx remove
-RUN update-rc.d -f php7.0-fpm remove
+RUN update-rc.d -f php7.2-fpm remove
 
 # add startup scripts for nginx
 ADD build/nginx.sh /etc/service/nginx/run
 RUN chmod +x /etc/service/nginx/run
 
-# add startup scripts for php7.0-fpm
+# add startup scripts for php7.2-fpm
 ADD build/phpfpm.sh /etc/service/phpfpm/run
 RUN chmod +x /etc/service/phpfpm/run
 
