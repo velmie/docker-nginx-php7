@@ -15,7 +15,6 @@ All services are defined and managed using the phusion/baseimage methodology. Lo
 * Nginx (lastest)
 * PHP-FPM (7.0) (with Xdebug)
 * Composer (PHP)
-* Node.JS (lastest)
 * XTERM environment support w/colors
 
 ### Default Settings
