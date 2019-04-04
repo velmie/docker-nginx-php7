@@ -72,3 +72,21 @@ EXPOSE 80 9000
 # cleanup apt and lists
 RUN apt-get clean
 RUN apt-get autoclean
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends vsftpd \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /var/run/vsftpd/empty \
+ && mkdir -p /etc/vsftpd \
+ && mkdir -p /var/ftp \
+ && mv /etc/vsftpd.conf /etc/vsftpd.orig \
+ && mkdir /etc/service/vsftpd
+
+ADD build/vsftpd.sh /etc/service/vsftpd/run
+
+VOLUME ["/var/ftp"]
+
+EXPOSE 20-21
+EXPOSE 65500-65515
