@@ -29,6 +29,9 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y nginx-full
 # install latest version of git
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y git
 
+# install latest version of nano
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y nano
+
 # install php composer
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
@@ -84,9 +87,7 @@ RUN mkdir -p /var/run/vsftpd/empty \
  && mv /etc/vsftpd.conf /etc/vsftpd.orig \
  && mkdir /etc/service/vsftpd
 
-ADD build/vsftpd.sh /etc/service/vsftpd/run
-
-VOLUME ["/var/ftp"]
+COPY build/vsftpd.conf /etc/vsftpd.conf
 
 EXPOSE 20-21
 EXPOSE 65500-65515
