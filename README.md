@@ -1,19 +1,13 @@
-<p align="center">
-  <a href="http://docker.io">
-    <img height="81" width="341" src="http://upload.wikimedia.org/wikipedia/commons/7/79/Docker_(container_engine)_logo.png">
-  </a>
-</p>
------
 # docker-nginx-php7
 A Nginx + PHP 7.3 (FPM) base container. Builds upon on the Ubuntu 16.04 LTS unsing [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker) container. You can find the docker automated build [here](https://registry.hub.docker.com/u/ttaranto/docker-nginx-php7/).
 
-[![](https://images.microbadger.com/badges/image/ttaranto/docker-nginx-php7.svg)](https://microbadger.com/images/ttaranto/docker-nginx-php7 "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/lightsuner/ubuntu-nginx-php7.svg)](https://microbadger.com/images/ttaranto/docker-nginx-php7 "Get your own image badge on microbadger.com")
 
 ### Services
 All services are defined and managed using the phusion/baseimage methodology. Logs are output using syslog and can be accessed using ``docker logs {container}``.
 
 * Nginx (lastest)
-* PHP-FPM (7.3) (with Xdebug)
+* PHP-FPM (7.3)
 * Composer (PHP)
 * XTERM environment support w/colors
 
@@ -24,16 +18,15 @@ The container sets up a www root folder in the following location:
 
 As a final task a demo index.php is copied to this location.
 
-### Add user for ftp
-``adduser ftpuser``
+### Add SFTP user
+```bash
+create_sftp_user -u username -p password
+```
 
-``usermod -d /var/www ftpuser``
-
-``chown ftpuser:ftpuser /var/www/public``
-
-``service vsftpd restart``
-
-Password for ftp user like in system
+### Permissions fix (/var/www)
+```bash
+fix_www
+```
 
 ### Web Root
 The following folder is specified as the default root web folder:
@@ -68,4 +61,4 @@ Contains nginx config files (nginx.conf) as well the scripts to configure php-fp
 This image supports [PostgreSQL](https://hub.docker.com/_/postgres/) and [MySQL](https://hub.docker.com/_/mysql/) and/or [MariaDB](https://hub.docker.com/_/mariadb/).
 
 ### Timezone
-The machine is configured to user America/Sao_Paulo timezone. The Nginx configuration is ready to run a [Laravel](https://laravel.com/) app.
+The machine is configured to user UTC timezone. The Nginx configuration is ready to run a [Laravel](https://laravel.com/) app.

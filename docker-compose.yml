@@ -1,10 +1,11 @@
 version: '3.3'
 services:
-    vsftpd:
+    velmie-php7:
         build:
             context: .
             dockerfile: Dockerfile
         ports:
+            - "10022:22"
             - "80:80"
-            - "20-21:20-21"
-            - "65500-65515:65500-65515"
+        #volumes:
+        #  - ./build/create_sftp_user.sh:/create_sftp_user.sh
