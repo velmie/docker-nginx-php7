@@ -1,6 +1,10 @@
-ftpd:
-    build: .
-    ports:
-        - "80:80"
-        - "20-21:20-21"
-        - "65500-65515:65500-65515"
+version: '3.3'
+services:
+    vsftpd:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "80:80"
+            - "20-21:20-21"
+            - "65500-65515:65500-65515"

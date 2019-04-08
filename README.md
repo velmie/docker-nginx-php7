@@ -24,6 +24,17 @@ The container sets up a www root folder in the following location:
 
 As a final task a demo index.php is copied to this location.
 
+### Add user for ftp
+``adduser ftpuser``
+
+``usermod -d /var/www ftpuser``
+
+``chown ftpuser:ftpuser /var/www/public``
+
+``service vsftpd restart``
+
+Password for ftp user like in system
+
 ### Web Root
 The following folder is specified as the default root web folder:
 
