@@ -1,5 +1,5 @@
 # docker-nginx-php7
-A Nginx + PHP 7.3 (FPM) base container. Builds upon on the Ubuntu 16.04 LTS unsing [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker) container. You can find the docker automated build [here](https://registry.hub.docker.com/u/ttaranto/docker-nginx-php7/).
+A Nginx + PHP 7.2 (FPM) base container. Builds upon on the Ubuntu 16.04 LTS unsing [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker) container. You can find the docker automated build [here](https://registry.hub.docker.com/u/ttaranto/docker-nginx-php7/).
 
 [![](https://images.microbadger.com/badges/image/lightsuner/ubuntu-nginx-php7.svg)](https://microbadger.com/images/ttaranto/docker-nginx-php7 "Get your own image badge on microbadger.com")
 
@@ -7,7 +7,7 @@ A Nginx + PHP 7.3 (FPM) base container. Builds upon on the Ubuntu 16.04 LTS unsi
 All services are defined and managed using the phusion/baseimage methodology. Logs are output using syslog and can be accessed using ``docker logs {container}``.
 
 * Nginx (lastest)
-* PHP-FPM (7.3)
+* PHP-FPM (7.2)
 * Composer (PHP)
 * XTERM environment support w/colors
 
