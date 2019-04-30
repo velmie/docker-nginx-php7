@@ -1,7 +1,7 @@
-# docker-nginx-php7
-A Nginx + PHP 7.2 (FPM) base container. Builds upon on the Ubuntu 16.04 LTS unsing [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker) container. You can find the docker automated build [here](https://registry.hub.docker.com/u/ttaranto/docker-nginx-php7/).
+# ubuntu-nginx-php7
+A Nginx + PHP 7.2 (FPM) base container. Builds upon on the Ubuntu 16.04 LTS unsing [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker) container. You can find the docker automated build [here](https://registry.hub.docker.com/u/velmie/ubuntu-nginx-php7/).
 
-[![](https://images.microbadger.com/badges/image/lightsuner/ubuntu-nginx-php7.svg)](https://microbadger.com/images/ttaranto/docker-nginx-php7 "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/lightsuner/ubuntu-nginx-php7.svg)](https://microbadger.com/images/velmie/ubuntu-nginx-php7 "Get your own image badge on microbadger.com")
 
 ### Services
 All services are defined and managed using the phusion/baseimage methodology. Logs are output using syslog and can be accessed using ``docker logs {container}``.
@@ -41,7 +41,7 @@ Note that the ``/var/www/public`` is the root folder for serving PHP files for y
 
 This will create a my_mysql or my_postgres image based on official mysql or postgres docker image.
 
-``docker run -p 80:80 -p 9000:9000 --name my_laravel -v ~/dev/laravel:/var/www --link my_mysql:mysqldb -d ttaranto/docker-nginx-php7``
+``docker run -p 80:80 -p 9000:9000 --name my_laravel -v ~/dev/laravel:/var/www --link my_mysql:mysqldb -d velmie/ubuntu-nginx-php7``
 
 This will create a docker image with name `my_laravel` linked to the MySQL container (my_mysql). Configue Laravel to connect to `mysqldb` host on .env file to access the database.
 
