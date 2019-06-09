@@ -39,6 +39,12 @@ echo "Creating a user: $USER"
 
 useradd $USER -m -d $USER_HOME -s /bin/bash
 
+SSH_PATH="${USER_HOME}/.ssh"
+mkdir -p $SSH_PATH
+
+touch "${SSH_PATH}/authorized_keys"
+touch "${SSH_PATH}/known_hosts"
+
 #sleep 1
 
 echo "$USER:$PASSWORD"|chpasswd
@@ -49,7 +55,10 @@ echo "The user: $USER is successfully created!"
 
 echo "Attaching the user: $USER to the group: $WEB_GROUP"
 
-usermod -a -G $WEB_GROUP $USER
+#usermod -a -G $WEB_GROUP $USER
+
+# Set user's primary group
+usermod -g $WEB_GROUP $USER
 
 #sleep 1
 
@@ -57,4 +66,10 @@ echo "Creating a symlink to the web folder."
 
 ln -s /var/www "$USER_HOME/www"
 
-echo "Completed!"
+# fix permissions
+
+chown -R $USER:$USER $USER_HOME
+
+fix_www_permissions
+
+#echo "Completed!"

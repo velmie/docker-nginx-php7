@@ -12,6 +12,10 @@ echo 'LC_ALL=en_US.UTF-8' >> /etc/environment
 echo 'LANG=en_US.UTF-8' >> /etc/environment
 echo 'LC_CTYPE=en_US.UTF-8' >> /etc/environment
 
+
+# disable xdebug
+rm /etc/php/7.2/mods-available/xdebug.ini
+
 # enable xdebug
 # echo 'xdebug.remote_enable=1' >> /etc/php/7.2/mods-available/xdebug.ini
 # echo 'xdebug.remote_connect_back=1' >> /etc/php/7.2/mods-available/xdebug.ini
@@ -37,3 +41,6 @@ chown -R www-data:www-data /var/run/php
 ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa
 cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 
+
+# Add fix_www_permissions to corn
+echo '0 * * * * root fix_www_permissions >/dev/null 2>&1' >> /etc/crontab

@@ -32,6 +32,9 @@ RUN DEBIAN_FRONTEND="noninteractive" apt install -y git
 # install latest version of nano
 RUN DEBIAN_FRONTEND="noninteractive" apt install -y nano
 
+# Install ACL (getfacl | setfacl)
+RUN DEBIAN_FRONTEND="noninteractive" apt install -y acl
+
 # install php composer
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
@@ -43,7 +46,7 @@ RUN chmod +x /root/setup/setup.sh
 RUN (cd /root/setup/; /root/setup/setup.sh)
 
 # copy files from repo
-ADD build/nginx.conf /etc/nginx/sites-available/default
+ADD build/nginx.ngx-conf /etc/nginx/sites-available/default
 ADD build/.bashrc /root/.bashrc
 
 # disable services start
@@ -70,11 +73,14 @@ RUN chmod -R g+rwX /var/www
 ADD build/create_sftp_user.sh /usr/local/bin/create_sftp_user
 RUN chmod +x /usr/local/bin/create_sftp_user
 
-ADD build/fix_www.sh /usr/local/bin/fix_www
-RUN chmod +x /usr/local/bin/fix_www
+ADD build/fix_www_permissions.sh /usr/local/bin/fix_www_permissions
+RUN chmod +x /usr/local/bin/fix_www_permissions
+RUN /usr/local/bin/fix_www_permissions
+
+ADD build/sshd_config /etc/ssh/sshd_config
 
 # set terminal environment
-ENV TERM=xterm
+ENV TERM xterm
 
 # cleanup apt and lists
 RUN apt clean
@@ -84,3 +90,4 @@ RUN apt autoclean
 EXPOSE 22
 EXPOSE 80
 
+CMD ["/sbin/my_init"]

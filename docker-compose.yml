@@ -8,4 +8,6 @@ services:
             - "10022:22"
             - "80:80"
         #volumes:
-        #  - ./build/create_sftp_user.sh:/create_sftp_user.sh
+        #   - ./nginx_deployer_laravel.ngx-conf:/etc/nginx/sites-available/default
+        #   - ./storage:/var/www
+        #   - ./build/create_sftp_user.sh:/create_sftp_user.sh

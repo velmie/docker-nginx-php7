@@ -19,14 +19,25 @@ The container sets up a www root folder in the following location:
 As a final task a demo index.php is copied to this location.
 
 ### Add SFTP user
+
+Create a regular user
+
 ```bash
 create_sftp_user -u username -p password
 ```
 
 ### Permissions fix (/var/www)
 ```bash
-fix_www
+fix_www_permissions
 ```
+
+### Manage services
+
+```bash
+sv (start|stop|restart) nginx
+```
+
+[More information](http://smarden.org/runit/sv.8.html)
 
 ### Web Root
 The following folder is specified as the default root web folder:
