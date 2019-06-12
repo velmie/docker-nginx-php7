@@ -1,3 +1,8 @@
+## 1.4 (release date: 2019-06-12)
+
+ * Add unzip to increase composer's speed
+ * Add Nodejs v10
+
 ## 1.3 (release date: 2019-06-10)
 
  * Fix www folder permissions

@@ -10,6 +10,7 @@ All services are defined and managed using the phusion/baseimage methodology. Lo
 * PHP-FPM (7.2)
 * Composer (PHP)
 * XTERM environment support w/colors
+* NodeJs 10
 
 ### Default Settings
 The container sets up a www root folder in the following location:
@@ -30,6 +31,10 @@ create_sftp_user -u username -p password
 ```bash
 fix_www_permissions
 ```
+
+By default, the system runs this script every hour.
+
+To disable it, just edit the ``/etc/crontab`` file.
 
 ### Manage services
 

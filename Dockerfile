@@ -35,9 +35,17 @@ RUN DEBIAN_FRONTEND="noninteractive" apt install -y nano
 # Install ACL (getfacl | setfacl)
 RUN DEBIAN_FRONTEND="noninteractive" apt install -y acl
 
+# Install zip & unzip
+RUN DEBIAN_FRONTEND="noninteractive" apt install -y zip unzip
+
 # install php composer
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
+
+# install nodejs
+RUN DEBIAN_FRONTEND="noninteractive" apt update && apt -y install curl python-software-properties
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN DEBIAN_FRONTEND="noninteractive" apt -y install nodejs
 
 # add build script (also set timezone to UTC)
 RUN mkdir -p /root/setup

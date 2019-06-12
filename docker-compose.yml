@@ -1,13 +1,13 @@
 version: '3.3'
 services:
-    velmie-php7:
-        build:
-            context: .
-            dockerfile: Dockerfile
-        ports:
-            - "10022:22"
-            - "80:80"
-        #volumes:
-        #   - ./nginx_deployer_laravel.ngx-conf:/etc/nginx/sites-available/default
-        #   - ./storage:/var/www
-        #   - ./build/create_sftp_user.sh:/create_sftp_user.sh
+  velmie-php7:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "10022:22"
+      - "80:80"
+    #volumes:
+      # - ./nginx_deployer_laravel.ngx-conf:/etc/nginx/sites-available/default
+      # - ./storage:/var/www
+      # - ./build/fix_www_permissions.sh:/usr/local/bin/fix_www_permissions
